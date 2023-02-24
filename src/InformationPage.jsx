@@ -1,9 +1,9 @@
 import { useState } from 'react'
-
+import PatientInformationCard from './PatientInformationCard'
 function InformationPage(){
     return (
         <div>
-            <p>FUCK kaijun</p>
+            <PatientInformationCard/>
         </div>
     )
 }

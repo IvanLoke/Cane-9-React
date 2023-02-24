@@ -6,7 +6,6 @@ import InformationPage from './InformationPage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
     <InformationPage />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
