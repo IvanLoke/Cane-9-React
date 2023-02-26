@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="flex bg-light-orange justify-center w-screen px-[12px]">
       <div className='flex flex-col w-full'>
-        <Header setPage={setPage} />
+        <Header setPage={setPage} page={page} />
         {
           renderPage(page)
         }
