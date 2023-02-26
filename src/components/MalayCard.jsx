@@ -4,7 +4,7 @@ import { storage } from "../../firebaseConfig";
 
 // help create the same card for the other 3 languages as well please!
 
-const Card = ({ children, patientName, caregiverName, patientImage, caregiverImage }) => {
+const Card = ({ children, hobbies, languages, contact, address, postalCode, patientName, patientAge, caregiverName, patientImage, caregiverImage, caregiverRelationship }) => {
   const [caregiverSrc, setCaregiverSrc] = useState("");
   const [patientSrc, setPatientSrc] = useState("");
 
@@ -37,14 +37,25 @@ const Card = ({ children, patientName, caregiverName, patientImage, caregiverIma
           <br />
           <p>Terima kasih banyak - banyak!</p>
         </div>
-        <div className='grid grid-cols-2 mt-3'>
-          <div>
+        <div className='grid grid-cols-2 mt-3 text-[10px]'>
+          <div className='flex flex-col items-center'>
             <img src={patientSrc} className='rounded-full h-[100px] w-[100px]' />
+            <span className='mt-5'><strong>{patientName}</strong>, {patientAge}</span>
+            <p className='text-[#FF6635] mt-5'>Address</p>
+            <p className='font-bold mt-1'>{address}</p>
+            <p className='mt-5 text-[#FF6635]'>Postal Code</p>
+            <p className='mt-1 font-bold'>{postalCode}</p>
           </div>
-          <div>
+          <div className='flex flex-col items-center'>
             <img src={caregiverSrc} className='rounded-full h-[100px] w-[100px]' />
+            <span className='mt-5'><strong>{caregiverName}</strong>, {caregiverRelationship}</span>
+            <p className='text-[#FF6635] mt-5'>Contact Number</p>
+            <p className='font-bold mt-1'>{contact}</p>
           </div>
           </div>
+          <p className='text-[10px] mt-6'>Terima kasih kerana menemani saya! Saya akan lebih gembira untuk berbual juga!</p>
+          <br />
+          <p className='text-[10px]'>Saya boleh bercakap <strong>{languages}</strong> dan hobi saya termasuk <strong>{hobbies}</strong>.</p>
       {children}
     </div>
   )
