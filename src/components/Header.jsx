@@ -1,25 +1,15 @@
 import Button from "./Button"
 
-function englishPage(){
-  console.log("FUCK");
-}
-
-function chinesePage(){}
-
-function malayPage(){}
-
-function tamilPage(){}
-
-const Header = () => {
+const Header = ({ setPage }) => {
   return (
     <div className="flex justify-evenly w-full my-3">
-      <Button children="English" onClick={englishPage}></Button>
+      <Button children="English" onClick={() => setPage(0)}></Button>
       <div className='mx-2 border-r border-[#707070]' />
-      <Button children="华语" onClick={chinesePage}></Button>
+      <Button children="华语" onClick={() => setPage(1)}></Button>
       <div className='mx-2 border-r border-[#707070]' />
-      <Button children="Melayu" onClick={malayPage}></Button>
+      <Button children="Melayu" onClick={() => setPage(2)}></Button>
       <div className='mx-2 border-r border-[#707070]' />
-      <Button children="தமிழ்" onClick={tamilPage}></Button>
+      <Button children="தமிழ்" onClick={() => setPage(3)}></Button>
     </div>
   )
 

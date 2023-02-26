@@ -19,31 +19,55 @@ function App() {
 
   const [patient, setPatient] = useState({});
   const [caregiver, setCaregiver] = useState({});
+  const [page, setPage] = useState(0);
+  const renderPage = (page) => {
+    switch (page) {
+      case 0:
+        return <Card hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />; 
+
+      case 1:
+        return <ChineseCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+
+      case 2:
+        return <MalayCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+
+      case 3:
+        return <TamilCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+    
+      default:
+        return <Card caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+    }
+  }
 
   useEffect(() => {
     const fetchCaretakerInfo = async () => {
-      const response = await fetch(`http://13.250.60.0:3000/caretaker/read?patientId=${patientId}`)
+      console.log("fetching caretaker info...");
+      const response = await fetch(`https://naiscbackend.vmpsg.xyz/caretaker/read?patientId=${patientId}`)
       const data = await response.json();
       console.log(data);
       setCaregiver(data);
     }
     const fetchPatientInfo = async () => {
-      const response = await fetch(`http://13.250.60.0:3000/patient/read?patientId=${patientId}`);
+      console.log("fetching patient info...");
+      const response = await fetch(`https://naiscbackend.vmpsg.xyz/patient/read?patientId=${patientId}`);
       const data = await response.json();
       console.log(data);
       setPatient(data);
     }
     if (patientId) {
+      console.log(patientId);
       fetchPatientInfo();
       fetchCaretakerInfo();
     }
   },[patientId]);
 
   return (
-    <div className="flex h-screen bg-light-orange justify-center w-screen px-[12px]">
+    <div className="flex bg-light-orange justify-center w-screen px-[12px]">
       <div className='flex flex-col w-full'>
-        <Header />
-        <ChineseCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]}/>
+        <Header setPage={setPage} />
+        {
+          renderPage(page)
+        }
       </div>
     </div>
   )
