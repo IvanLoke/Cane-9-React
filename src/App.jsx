@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import Card from './components/Card'
 import ChineseCard from './components/ChineseCard'
 import MalayCard from './components/MalayCard'
+import TamilCard from './components/TamilCard'
 import Header from './components/Header'
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -42,7 +43,7 @@ function App() {
     <div className="flex h-screen bg-light-orange justify-center w-screen px-[12px]">
       <div className='flex flex-col w-full'>
         <Header />
-        <MalayCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]}/>
+        <ChineseCard caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]}/>
       </div>
     </div>
   )
