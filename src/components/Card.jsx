@@ -1,24 +1,50 @@
+import { ref, getDownloadURL } from "firebase/storage";
+import { useEffect, useState } from "react";
+import { storage } from "../../firebaseConfig";
 
+// help create the same card for the other 3 languages as well please!
 
-const Card = ({ children }) => {
+const Card = ({ children, patientName, caregiverName, patientImage, caregiverImage }) => {
+  const [caregiverSrc, setCaregiverSrc] = useState("");
+  const [patientSrc, setPatientSrc] = useState("");
+
+  useEffect(() => {
+    const caregiverImageRef = ref(storage, caregiverImage);
+    const patientImageRef = ref(storage, patientImage);
+
+    const fetchUrls = async () => {
+      setPatientSrc(await getDownloadURL(patientImageRef));
+      setCaregiverSrc(await getDownloadURL(caregiverImageRef));
+    }
+    if (caregiverImage && patientImage) {
+      fetchUrls();
+    }
+  },[])
+
   return (
-    <div className="h-[573px] w-[301px] bg-white rounded-t-lg text-black text-center font-[Inter]">
-      <div>
-        <div className="font-[14px]"><b>Hello there!</b></div>
-        <div className="font-[10px]">
+    <div className="shadow-xl bg-white rounded-t-lg text-black text-center font-[Inter] h-full p-[20px]">
+        <div className="text-[14px]"><b>Hello there!</b></div>
+        <div className="text-[10px]">
           <p>Thank you for scanning my QR code!</p>
-
-          <p>I am <b>Mr Winston Huang</b>, and I have a tendency of forgetting where I am going
+          <br />
+          <p>I am <b>Mr {patientName}</b>, and I have a tendency of forgetting where I am going
             and getting lost.</p>
-
+          <br />
           <p>It appears that my caregiver is looking for me. I would really appreciate it if
-            you could give <b>Ms Lynn Lee</b> a call <p className="text-[#FF6635]">(contact number below)</p> and direct me back to my house <p className="text-[#FF6635]">(address below)</p>.</p>
-
+            you could give <b>Ms {caregiverName}</b> a call <span className="text-[#FF6635]">(contact number below)</span> and direct me back to my house <span className="text-[#FF6635]">(address below)</span>.</p>
+          <br />
           <p>If it's too much trouble, you could also direct me to the nearest police station where I could obtain help.</p>
-
+          <br />
           <p>Thank you very much!</p>
         </div>
-      </div>
+        <div className='grid grid-cols-2 mt-3'>
+          <div>
+            <img src={patientSrc} className='rounded-full h-[100px] w-[100px]' />
+          </div>
+          <div>
+            <img src={caregiverSrc} className='rounded-full h-[100px] w-[100px]' />
+          </div>
+          </div>
       {children}
     </div>
   )
