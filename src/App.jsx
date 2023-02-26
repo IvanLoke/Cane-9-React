@@ -23,19 +23,19 @@ function App() {
   const renderPage = (page) => {
     switch (page) {
       case 0:
-        return <Card hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />; 
+        return <Card caregiverImage={caregiver["image"]} patientImage={patient["image"]} />;
 
       case 1:
-        return <ChineseCard hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+        return <ChineseCard caregiverImage={caregiver["image"]} patientImage={patient["image"]} />;
 
       case 2:
-        return <MalayCard hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+        return <MalayCard caregiverImage={caregiver["image"]} patientImage={patient["image"]} />;
 
       case 3:
-        return <TamilCard hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
-    
+        return <TamilCard caregiverImage={caregiver["image"]} patientImage={patient["image"]} />;
+
       default:
-        return <Card hobbies={patient["hobbies"] ? patient["hobbies"].join(", ") : ""} languages={patient["languages"] ? patient["languages"].join(", ") : ""} contact={caregiver["contact"]} address={patient["address"]} postalCode={patient["postalCode"]} patientAge={patient["age"]} caregiverRelationship={caregiver["relationship"]} caregiverName={caregiver["name"]} caregiverImage={caregiver["image"]} patientName={patient["name"]} patientImage={patient["image"]} />;
+        return <Card caregiverImage={caregiver["image"]} patientImage={patient["image"]} />;
     }
   }
 
@@ -59,7 +59,7 @@ function App() {
       fetchPatientInfo();
       fetchCaretakerInfo();
     }
-  },[patientId]);
+  }, [patientId]);
 
   return (
     <div className="flex bg-light-orange justify-center w-screen px-[12px]">
